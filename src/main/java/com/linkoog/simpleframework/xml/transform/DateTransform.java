@@ -41,7 +41,7 @@ import java.util.Date;
  * 
  * @author Niall Gallagher
  */
-class DateTransform<T extends Date> implements Transform<T> {
+public class DateTransform<T extends Date> implements Transform<T> {
    
    /**
     * This represents the constructor used for creating the date.

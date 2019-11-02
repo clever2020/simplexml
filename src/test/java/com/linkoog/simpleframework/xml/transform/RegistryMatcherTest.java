@@ -7,6 +7,7 @@ import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
+import com.linkoog.simpleframework.xml.transform.matcher.RegistryMatcher;
 
 public class RegistryMatcherTest extends ValidationTestCase {
    

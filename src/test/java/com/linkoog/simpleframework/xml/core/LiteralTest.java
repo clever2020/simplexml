@@ -4,7 +4,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Root;
 import com.linkoog.simpleframework.xml.annotations.Text;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
-import com.linkoog.simpleframework.xml.transform.Matcher;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import com.linkoog.simpleframework.xml.transform.Transform;
 
 public class LiteralTest extends ValidationTestCase {

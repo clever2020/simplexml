@@ -41,7 +41,7 @@ import java.net.URL;
  * 
  * @author Niall Gallagher
  */
-class URLTransform implements Transform<URL> {
+public class URLTransform implements Transform<URL> {
    
    /**
     * This method is used to convert the string value given to an

@@ -42,7 +42,7 @@ import java.util.Date;
  * 
  * @author Niall Gallagher
  */
-class GregorianCalendarTransform implements Transform<GregorianCalendar> {
+public class GregorianCalendarTransform implements Transform<GregorianCalendar> {
    
    /**
     * This is the date transform used to parse and format dates.

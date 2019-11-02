@@ -42,7 +42,7 @@ import java.util.Locale;
  * 
  * @author Niall Gallagher
  */
-class LocaleTransform implements Transform<Locale>{
+public class LocaleTransform implements Transform<Locale>{
 
    /**
     * This is the pattern used to split the parts of the locale.

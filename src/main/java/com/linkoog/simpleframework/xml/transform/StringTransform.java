@@ -39,7 +39,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @author Niall Gallagher
  */
-class StringTransform implements Transform<String> {
+public class StringTransform implements Transform<String> {
    
    /**
     * This method is used to convert the string value given to an

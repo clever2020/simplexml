@@ -41,7 +41,7 @@ import java.math.BigInteger;
  * 
  * @author Niall Gallagher
  */
-class BigIntegerTransform implements Transform<BigInteger> {
+public class BigIntegerTransform implements Transform<BigInteger> {
    
    /**
     * This method is used to convert the string value given to an

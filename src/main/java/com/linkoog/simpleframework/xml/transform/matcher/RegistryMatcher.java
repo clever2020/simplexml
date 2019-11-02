@@ -16,9 +16,11 @@
  * permissions and limitations under the License.
  */
 
-package com.linkoog.simpleframework.xml.transform;
+package com.linkoog.simpleframework.xml.transform.matcher;
 
 import com.linkoog.simpleframework.xml.core.Persister;
+import com.linkoog.simpleframework.xml.transform.Transform;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import com.linkoog.simpleframework.xml.util.Cache;
 import com.linkoog.simpleframework.xml.util.ConcurrentCache;
 

@@ -16,7 +16,19 @@
  * permissions and limitations under the License.
  */
 
-package com.linkoog.simpleframework.xml.transform;
+package com.linkoog.simpleframework.xml.transform.matcher;
+
+import com.linkoog.simpleframework.xml.transform.BooleanTransform;
+import com.linkoog.simpleframework.xml.transform.ByteTransform;
+import com.linkoog.simpleframework.xml.transform.CharacterTransform;
+import com.linkoog.simpleframework.xml.transform.DoubleTransform;
+import com.linkoog.simpleframework.xml.transform.FloatTransform;
+import com.linkoog.simpleframework.xml.transform.IntegerTransform;
+import com.linkoog.simpleframework.xml.transform.LongTransform;
+import com.linkoog.simpleframework.xml.transform.ShortTransform;
+import com.linkoog.simpleframework.xml.transform.Transform;
+import com.linkoog.simpleframework.xml.transform.matcher.DefaultMatcher;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 
 /**
  * The <code>PrimitiveMatcher</code> object is used to resolve the
@@ -28,7 +40,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @see DefaultMatcher
  */
-class PrimitiveMatcher implements Matcher { 
+class PrimitiveMatcher implements Matcher {
    
    /**
     * Constructor for the <code>PrimitiveMatcher</code> object. The
@@ -50,7 +62,7 @@ class PrimitiveMatcher implements Matcher {
     * 
     * @return this returns a stock transform for the primitive
     */
-   public Transform match(Class type) throws Exception {     
+   public Transform match(Class type) throws Exception {
       if(type == int.class) {
          return new IntegerTransform();
       }

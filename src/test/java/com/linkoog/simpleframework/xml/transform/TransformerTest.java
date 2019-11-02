@@ -1,5 +1,6 @@
 package com.linkoog.simpleframework.xml.transform;
 
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import junit.framework.TestCase;
 
 public class TransformerTest extends TestCase {

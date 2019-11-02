@@ -16,7 +16,10 @@
  * permissions and limitations under the License.
  */
 
-package com.linkoog.simpleframework.xml.transform;
+package com.linkoog.simpleframework.xml.transform.matcher;
+
+import com.linkoog.simpleframework.xml.transform.Transform;
+import com.linkoog.simpleframework.xml.transform.Transformer;
 
 /**
  * The <code>Matcher</code> is used to match a type with a transform

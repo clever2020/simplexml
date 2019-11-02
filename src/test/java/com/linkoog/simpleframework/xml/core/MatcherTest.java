@@ -8,7 +8,7 @@ import com.linkoog.simpleframework.xml.annotations.Namespace;
 import com.linkoog.simpleframework.xml.annotations.Root;
 import com.linkoog.simpleframework.xml.Serializer;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
-import com.linkoog.simpleframework.xml.transform.Matcher;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import com.linkoog.simpleframework.xml.transform.Transform;
 
 public class MatcherTest extends ValidationTestCase {

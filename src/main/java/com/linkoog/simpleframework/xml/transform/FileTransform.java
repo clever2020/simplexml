@@ -41,7 +41,7 @@ import java.io.File;
  * 
  * @author Niall Gallagher
  */
-class FileTransform implements Transform<File> {
+public class FileTransform implements Transform<File> {
                
    /**
     * This method is used to convert the string value given to an

@@ -39,7 +39,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @author Niall Gallagher
  */
-class BooleanTransform implements Transform<Boolean> {
+public class BooleanTransform implements Transform<Boolean> {
 
    /**
     * This method is used to convert the string value given to an

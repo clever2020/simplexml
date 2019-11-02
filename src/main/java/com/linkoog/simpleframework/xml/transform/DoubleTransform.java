@@ -39,7 +39,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @author Niall Gallagher
  */
-class DoubleTransform implements Transform<Double> {
+public class DoubleTransform implements Transform<Double> {
    
    /**
     * This method is used to convert the string value given to an

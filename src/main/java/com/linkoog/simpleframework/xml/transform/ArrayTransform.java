@@ -41,7 +41,7 @@ import java.lang.reflect.Array;
  * 
  * @author Niall Gallagher
  */
-class ArrayTransform implements Transform {           
+public class ArrayTransform implements Transform {
 
    /**
     * This transform is used to split the comma separated values. 

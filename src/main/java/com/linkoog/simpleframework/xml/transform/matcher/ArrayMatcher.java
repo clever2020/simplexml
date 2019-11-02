@@ -16,7 +16,12 @@
  * permissions and limitations under the License.
  */
 
-package com.linkoog.simpleframework.xml.transform;
+package com.linkoog.simpleframework.xml.transform.matcher;
+
+import com.linkoog.simpleframework.xml.transform.ArrayTransform;
+import com.linkoog.simpleframework.xml.transform.CharacterArrayTransform;
+import com.linkoog.simpleframework.xml.transform.StringArrayTransform;
+import com.linkoog.simpleframework.xml.transform.Transform;
 
 /**
  * The <code>ArrayMatcher</code> object performs matching of array
@@ -31,7 +36,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @see ArrayTransform
  */
-class ArrayMatcher implements Matcher {
+public class ArrayMatcher implements Matcher {
 
    /**
     * This is the primary matcher that can resolve transforms.

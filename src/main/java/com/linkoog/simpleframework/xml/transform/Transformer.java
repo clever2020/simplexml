@@ -18,6 +18,8 @@
 
 package com.linkoog.simpleframework.xml.transform;
 
+import com.linkoog.simpleframework.xml.transform.matcher.DefaultMatcher;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import com.linkoog.simpleframework.xml.util.Cache;
 import com.linkoog.simpleframework.xml.util.ConcurrentCache;
 

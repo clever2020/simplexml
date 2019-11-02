@@ -16,7 +16,33 @@
  * permissions and limitations under the License.
  */
 
-package com.linkoog.simpleframework.xml.transform;
+package com.linkoog.simpleframework.xml.transform.matcher;
+
+import com.linkoog.simpleframework.xml.transform.AtomicIntegerTransform;
+import com.linkoog.simpleframework.xml.transform.AtomicLongTransform;
+import com.linkoog.simpleframework.xml.transform.BigDecimalTransform;
+import com.linkoog.simpleframework.xml.transform.BigIntegerTransform;
+import com.linkoog.simpleframework.xml.transform.BooleanTransform;
+import com.linkoog.simpleframework.xml.transform.ByteTransform;
+import com.linkoog.simpleframework.xml.transform.CharacterTransform;
+import com.linkoog.simpleframework.xml.transform.ClassTransform;
+import com.linkoog.simpleframework.xml.transform.CurrencyTransform;
+import com.linkoog.simpleframework.xml.transform.DateTransform;
+import com.linkoog.simpleframework.xml.transform.DoubleTransform;
+import com.linkoog.simpleframework.xml.transform.EnumTransform;
+import com.linkoog.simpleframework.xml.transform.FileTransform;
+import com.linkoog.simpleframework.xml.transform.FloatTransform;
+import com.linkoog.simpleframework.xml.transform.GregorianCalendarTransform;
+import com.linkoog.simpleframework.xml.transform.IntegerTransform;
+import com.linkoog.simpleframework.xml.transform.LocaleTransform;
+import com.linkoog.simpleframework.xml.transform.LongTransform;
+import com.linkoog.simpleframework.xml.transform.ShortTransform;
+import com.linkoog.simpleframework.xml.transform.StringTransform;
+import com.linkoog.simpleframework.xml.transform.TimeZoneTransform;
+import com.linkoog.simpleframework.xml.transform.Transform;
+import com.linkoog.simpleframework.xml.transform.URLTransform;
+import com.linkoog.simpleframework.xml.transform.matcher.DefaultMatcher;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -67,7 +93,7 @@ class PackageMatcher implements Matcher {
     * 
     * @return the transform that is used to transform that type
     */
-   public Transform match(Class type) throws Exception {  
+   public Transform match(Class type) throws Exception {
       String name = type.getName();
       
       if(name.startsWith("java.lang")) {

@@ -39,7 +39,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @author Niall Gallagher
  */
-class LongTransform implements Transform<Long> {
+public class LongTransform implements Transform<Long> {
    
    /**
     * This method is used to convert the string value given to an

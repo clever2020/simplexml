@@ -41,7 +41,7 @@ import java.math.BigDecimal;
  * 
  * @author Niall Gallagher
  */
-class BigDecimalTransform implements Transform<BigDecimal> {
+public class BigDecimalTransform implements Transform<BigDecimal> {
    
    /**
     * This method is used to convert the string value given to an

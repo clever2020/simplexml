@@ -26,7 +26,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @author Niall Gallagher
  */
-class EnumTransform implements Transform<Enum> {
+public class EnumTransform implements Transform<Enum> {
    
    /**
     * This is the specific enumeration that this transforms.

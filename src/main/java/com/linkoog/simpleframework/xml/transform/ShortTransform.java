@@ -39,7 +39,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @author Niall Gallagher
  */
-class ShortTransform implements Transform<Short> {
+public class ShortTransform implements Transform<Short> {
    
    /**
     * This method is used to convert the string value given to an

@@ -16,7 +16,10 @@
  * permissions and limitations under the License.
  */
 
-package com.linkoog.simpleframework.xml.transform;
+package com.linkoog.simpleframework.xml.transform.matcher;
+
+import com.linkoog.simpleframework.xml.transform.Transform;
+import com.linkoog.simpleframework.xml.transform.Transformer;
 
 /**
  * The <code>DefaultMatcher</code> is a delegation object that uses
@@ -31,7 +34,7 @@ package com.linkoog.simpleframework.xml.transform;
  *
  * @see Transformer
  */
-class DefaultMatcher implements Matcher {
+public class DefaultMatcher implements Matcher {
    
    /**
     * Matcher used to resolve stock transforms for primitive types.

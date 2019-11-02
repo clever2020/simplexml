@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
  * 
  * @author Niall Gallagher
  */
-class StringArrayTransform implements Transform<String[]> {
+public class StringArrayTransform implements Transform<String[]> {
 
    /**
     * Represents the pattern used to split the string values.

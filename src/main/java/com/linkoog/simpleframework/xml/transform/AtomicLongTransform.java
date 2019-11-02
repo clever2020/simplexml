@@ -41,7 +41,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * 
  * @author Niall Gallagher
  */
-class AtomicLongTransform implements Transform<AtomicLong> {
+public class AtomicLongTransform implements Transform<AtomicLong> {
    
    /**
     * This method is used to convert the string value given to an

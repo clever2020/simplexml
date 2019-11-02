@@ -1,5 +1,7 @@
 package com.linkoog.simpleframework.xml.transform;
 
+import com.linkoog.simpleframework.xml.transform.matcher.DefaultMatcher;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import junit.framework.TestCase;
 
 public class TypeMatcherTest extends TestCase {

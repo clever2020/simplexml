@@ -41,7 +41,7 @@ import java.lang.reflect.Array;
  * 
  * @author Niall Gallagher
  */
-class CharacterArrayTransform implements Transform {     
+public class CharacterArrayTransform implements Transform {
 
    /**
     * This is the entry type for the primitive array to be created.

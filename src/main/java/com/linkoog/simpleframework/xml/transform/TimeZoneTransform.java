@@ -41,7 +41,7 @@ import java.util.TimeZone;
  * 
  * @author Niall Gallagher
  */
-class TimeZoneTransform implements Transform<TimeZone> {
+public class TimeZoneTransform implements Transform<TimeZone> {
    
    /**
     * This method is used to convert the string value given to an

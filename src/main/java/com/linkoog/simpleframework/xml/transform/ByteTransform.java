@@ -39,7 +39,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @author Niall Gallagher
  */
-class ByteTransform implements Transform<Byte> {
+public class ByteTransform implements Transform<Byte> {
    
    /**
     * This method is used to convert the string value given to an

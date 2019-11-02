@@ -41,7 +41,7 @@ import java.util.Currency;
  * 
  * @author Niall Gallagher
  */
-class CurrencyTransform implements Transform<Currency> {
+public class CurrencyTransform implements Transform<Currency> {
    
    /**
     * This method is used to convert the string value given to an

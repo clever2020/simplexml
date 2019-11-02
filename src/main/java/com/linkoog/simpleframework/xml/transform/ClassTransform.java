@@ -40,7 +40,7 @@ package com.linkoog.simpleframework.xml.transform;
  * @author Ben Wolfe
  * @author Niall Gallagher
  */
-class ClassTransform implements Transform<Class> {
+public class ClassTransform implements Transform<Class> {
    
    /**
     * This is the string that represents the class for an integer.

@@ -41,7 +41,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 
  * @author Niall Gallagher
  */
-class AtomicIntegerTransform implements Transform<AtomicInteger> {
+public class AtomicIntegerTransform implements Transform<AtomicInteger> {
    
    /**
     * This method is used to convert the string value given to an

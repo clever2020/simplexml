@@ -16,7 +16,11 @@
  * permissions and limitations under the License.
  */
 
-package com.linkoog.simpleframework.xml.transform;
+package com.linkoog.simpleframework.xml.transform.matcher;
+
+import com.linkoog.simpleframework.xml.transform.Transform;
+import com.linkoog.simpleframework.xml.transform.Transformer;
+import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 
 /**
  * The <code>EmptyMatcher</code> object is used as a delegate type 
@@ -28,7 +32,7 @@ package com.linkoog.simpleframework.xml.transform;
  * 
  * @see Transformer
  */
-class EmptyMatcher implements Matcher {
+public class EmptyMatcher implements Matcher {
 
    /**
     * This method is used to return a null value for the transform.
