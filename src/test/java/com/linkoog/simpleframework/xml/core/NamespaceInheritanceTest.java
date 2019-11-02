@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Namespace;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class NamespaceInheritanceTest extends ValidationTestCase {
@@ -42,8 +42,8 @@ public class NamespaceInheritanceTest extends ValidationTestCase {
       grandchild.bbb = new Bbb();
  
       ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-      Serializer serializer = new Persister();
-      serializer.write(parent, tmp);
+      XmlMapper xmlMapper = new Persister();
+      xmlMapper.write(parent, tmp);
  
       String result = new String(tmp.toByteArray());
       System.out.println(result);
@@ -68,8 +68,8 @@ public class NamespaceInheritanceTest extends ValidationTestCase {
       grandchild.bbb = new BbbWithPrefix();
  
       ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-      Serializer serializer = new Persister();
-      serializer.write(parent, tmp);
+      XmlMapper xmlMapper = new Persister();
+      xmlMapper.write(parent, tmp);
  
       String result = new String(tmp.toByteArray());
       System.out.println(result);

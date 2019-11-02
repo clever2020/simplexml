@@ -5,7 +5,7 @@ import java.io.StringWriter;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementUnion;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class UnionWithTypeOverridesTest extends ValidationTestCase {
@@ -52,7 +52,7 @@ public class UnionWithTypeOverridesTest extends ValidationTestCase {
    public static class MyElementC extends MyElement{}
 
    public void testMyElementA() throws Exception{
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       OverrideTypeExample example = persister.read(OverrideTypeExample.class, SINGLE_ELEMENT_A);
             
       assertEquals(example.element.getClass(), MyElementA.class);
@@ -67,7 +67,7 @@ public class UnionWithTypeOverridesTest extends ValidationTestCase {
    } 
    
    public void testMyElementB() throws Exception{
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       OverrideTypeExample example = persister.read(OverrideTypeExample.class, SINGLE_ELEMENT_B);
             
       assertEquals(example.element.getClass(), MyElementB.class);
@@ -82,7 +82,7 @@ public class UnionWithTypeOverridesTest extends ValidationTestCase {
    } 
    
    public void testMyElementWithovOverrideC() throws Exception{
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       OverrideTypeExample example = persister.read(OverrideTypeExample.class, SINGLE_ELEMENT_WITH_OVERRIDE_C);
             
       assertEquals(example.element.getClass(), MyElementC.class);

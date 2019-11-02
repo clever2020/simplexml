@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
 import com.linkoog.simpleframework.xml.stream.InputNode;
@@ -179,9 +179,9 @@ public class AnnotationConverterTest extends ValidationTestCase {
    public void testAnnotationConversion() throws Exception {
       Strategy strategy = new TreeStrategy();
       Strategy converter = new AnnotationStrategy(strategy);
-      Serializer serializer = new Persister(converter);
+      XmlMapper xmlMapper = new Persister(converter);
       StringWriter writer = new StringWriter();
-      FarmExample example = serializer.read(FarmExample.class, SOURCE);
+      FarmExample example = xmlMapper.read(FarmExample.class, SOURCE);
       
       assertEquals(example.getCow().getName(), "Bull");
       assertEquals(example.getCow().getAge(), 4);
@@ -190,8 +190,8 @@ public class AnnotationConverterTest extends ValidationTestCase {
       assertEquals(example.getChicken().getAge(), 1);
       assertEquals(example.getChicken().getLegs(), 2);
       
-      serializer.write(example, System.out);
-      serializer.write(example, writer);
+      xmlMapper.write(example, System.out);
+      xmlMapper.write(example, writer);
       
       String text = writer.toString();
       

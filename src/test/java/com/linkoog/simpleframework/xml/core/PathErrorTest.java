@@ -7,7 +7,7 @@ import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Namespace;
 import com.linkoog.simpleframework.xml.annotations.Path;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 
 public class PathErrorTest extends TestCase{
@@ -70,10 +70,10 @@ public class PathErrorTest extends TestCase{
    }
    
    public void testRepeat() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       StringWriter writer = new StringWriter();
       TradeHeader header = new TradeHeader();
-      serializer.write(header, writer);
+      xmlMapper.write(header, writer);
 
       String data = writer.getBuffer().toString();
       

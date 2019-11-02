@@ -6,7 +6,7 @@ import java.util.Map;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementMap;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
 
@@ -210,8 +210,8 @@ public class MapCycleTest extends ValidationTestCase {
       
    public void testEntryMap() throws Exception {
       Strategy strategy = new CycleStrategy();
-      Serializer serializer = new Persister(strategy);
-      EntryMap example = serializer.read(EntryMap.class, ENTRY_MAP);
+      XmlMapper xmlMapper = new Persister(strategy);
+      EntryMap example = xmlMapper.read(EntryMap.class, ENTRY_MAP);
       
       assertEquals("example 1", example.getValue("a"));
       assertEquals("example 2", example.getValue("b"));
@@ -227,30 +227,30 @@ public class MapCycleTest extends ValidationTestCase {
       assertTrue(c == d);
       assertFalse(a == b);
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testComplexMap() throws Exception {
       Strategy strategy = new CycleStrategy();
-      Serializer serializer = new Persister(strategy);
-      ComplexMap example = serializer.read(ComplexMap.class, COMPLEX_MAP);
+      XmlMapper xmlMapper = new Persister(strategy);
+      ComplexMap example = xmlMapper.read(ComplexMap.class, COMPLEX_MAP);
       
       assertEquals("example 2", example.getValue(new CompositeKey("name 1", "address 1")));
       assertEquals("example 2", example.getValue(new CompositeKey("name 3", "address 3")));
       assertEquals("example 4", example.getValue(new CompositeKey("name 4", "address 4")));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testPrimitiveMap() throws Exception {
       Strategy strategy = new CycleStrategy();
-      Serializer serializer = new Persister(strategy);
-      PrimitiveMap example = serializer.read(PrimitiveMap.class, PRIMITIVE_MAP);
+      XmlMapper xmlMapper = new Persister(strategy);
+      PrimitiveMap example = xmlMapper.read(PrimitiveMap.class, PRIMITIVE_MAP);
       
       assertEquals(1.0, example.getValue("one"));
       assertEquals(1.0, example.getValue("two"));
       assertEquals(4.0, example.getValue("three"));     
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
 }

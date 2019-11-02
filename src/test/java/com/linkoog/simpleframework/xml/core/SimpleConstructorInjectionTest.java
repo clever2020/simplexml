@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 
 public class SimpleConstructorInjectionTest extends TestCase {
@@ -15,9 +15,9 @@ public class SimpleConstructorInjectionTest extends TestCase {
             "<necessary>test</necessary>" +
             "<optional/>" +
             "</MessageWrapper>";
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       
-      Message example = serializer.read(Message.class, xml);
+      Message example = xmlMapper.read(Message.class, xml);
       System.out.println("message: "+example.getOptional());
    }
    

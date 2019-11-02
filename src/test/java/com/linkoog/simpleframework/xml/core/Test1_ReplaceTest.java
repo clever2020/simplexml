@@ -5,7 +5,7 @@ import java.io.StringWriter;
 
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 
 public class Test1_ReplaceTest extends TestCase {
@@ -57,7 +57,7 @@ public class Test1_ReplaceTest extends TestCase {
    }
 
    public void testReplace() throws Exception{
-      Serializer s = new Persister();
+      XmlMapper s = new Persister();
       StringWriter sw = new StringWriter();
       s.write(new Test1A(null), sw);      
       String serializedForm = sw.toString();

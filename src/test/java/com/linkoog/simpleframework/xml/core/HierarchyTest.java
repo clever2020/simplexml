@@ -1,7 +1,7 @@
 package com.linkoog.simpleframework.xml.core;
 
 import com.linkoog.simpleframework.xml.annotations.Element;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class HierarchyTest extends ValidationTestCase {
@@ -81,10 +81,10 @@ public class HierarchyTest extends ValidationTestCase {
    }
    
    public void testHierarchy() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       Specialized special = new Specialized(1L, 2.0, "a", "b", 1, 2);
       
-      validate(special, serializer);
+      validate(special, xmlMapper);
    }
 
 }

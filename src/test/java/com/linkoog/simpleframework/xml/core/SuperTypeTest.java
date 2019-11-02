@@ -7,7 +7,7 @@ import java.util.Map;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementMap;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.strategy.ClassToNamespaceVisitor;
 import com.linkoog.simpleframework.xml.strategy.Strategy;
 import com.linkoog.simpleframework.xml.strategy.Visitor;
@@ -61,7 +61,7 @@ public class SuperTypeTest extends TestCase {
       
       Visitor visitor = new ClassToNamespaceVisitor(false);
       Strategy strategy = new VisitorStrategy(visitor);
-      Serializer serializer = new Persister(strategy);
+      XmlMapper xmlMapper = new Persister(strategy);
       MyMap map = new MyMap();
       SubType1 subtype1 = new SubType1();
       SubType2 subtype2 = new SubType2();
@@ -73,8 +73,8 @@ public class SuperTypeTest extends TestCase {
       map.getInternalMap().put("one", subtype1);
       map.getInternalMap().put("two", subtype2);
    
-      serializer.write(map, writer); 
-      serializer.write(map, System.out); 
-      serializer.read(MyMap.class, writer.toString());
+      xmlMapper.write(map, writer);
+      xmlMapper.write(map, System.out);
+      xmlMapper.read(MyMap.class, writer.toString());
    }
 }

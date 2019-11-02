@@ -11,7 +11,7 @@ import com.linkoog.simpleframework.xml.annotations.ElementListUnion;
 import com.linkoog.simpleframework.xml.annotations.ElementMap;
 import com.linkoog.simpleframework.xml.annotations.ElementMapUnion;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class UnionEmptyListBugTest extends ValidationTestCase {
@@ -41,10 +41,10 @@ public class UnionEmptyListBugTest extends ValidationTestCase {
    }
    
    public void testListBug() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       ElementListUnionBug element = new ElementListUnionBug();
       StringWriter writer = new StringWriter();
-      serializer.write(element, writer);
+      xmlMapper.write(element, writer);
       String text = writer.toString();
       assertElementExists(text, "/elementListUnionBug");
       assertElementDoesNotExist(text, "/elementListUnionBug/string");
@@ -52,7 +52,7 @@ public class UnionEmptyListBugTest extends ValidationTestCase {
       writer = new StringWriter();
       element.values.add("A");
       element.values.add(111);    
-      serializer.write(element, writer);
+      xmlMapper.write(element, writer);
       text = writer.toString();
       System.out.println(text);
       assertElementExists(text, "/elementListUnionBug/string");
@@ -62,10 +62,10 @@ public class UnionEmptyListBugTest extends ValidationTestCase {
    }
    
    public void testMapBug() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       ElementMapUnionBug element = new ElementMapUnionBug();
       StringWriter writer = new StringWriter();
-      serializer.write(element, writer);
+      xmlMapper.write(element, writer);
       String text = writer.toString();
       assertElementExists(text, "/elementMapUnionBug");
       assertElementDoesNotExist(text, "/elementMapUnionBug/string");
@@ -74,7 +74,7 @@ public class UnionEmptyListBugTest extends ValidationTestCase {
       writer = new StringWriter();
       element.values.put("A", "string");
       element.values.put("B", 1);    
-      serializer.write(element, writer);
+      xmlMapper.write(element, writer);
       text = writer.toString();
       System.out.println(text);
       assertElementExists(text, "/elementMapUnionBug/string");

@@ -6,7 +6,7 @@ import com.linkoog.simpleframework.xml.annotations.ElementListUnion;
 import com.linkoog.simpleframework.xml.annotations.ElementUnion;
 import com.linkoog.simpleframework.xml.annotations.Path;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 import java.io.StringWriter;
 import java.util.Arrays;
@@ -75,7 +75,7 @@ public class Test5Test extends TestCase {
    }
    
    public void testSerialize() throws Exception{
-      Serializer s = new Persister();
+      XmlMapper s = new Persister();
       StringWriter sw = new StringWriter();
       //FIXME serialization is ok
       s.write(new Test5(new MyElementA(), new MyElementA(), new MyElementB()), sw);    

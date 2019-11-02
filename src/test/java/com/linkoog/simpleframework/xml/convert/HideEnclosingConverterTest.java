@@ -6,7 +6,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Convert;
 import com.linkoog.simpleframework.xml.annotations.Default;
 import com.linkoog.simpleframework.xml.annotations.Element;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
 import com.linkoog.simpleframework.xml.strategy.Strategy;
@@ -16,18 +16,18 @@ import com.linkoog.simpleframework.xml.stream.OutputNode;
 public class HideEnclosingConverterTest extends ValidationTestCase {
 
    public static class EntryConverter implements Converter<Entry> {
-      private final Serializer serializer;
+      private final XmlMapper xmlMapper;
       public EntryConverter() {
-         this.serializer = new Persister();
+         this.xmlMapper = new Persister();
       }
       public Entry read(InputNode node) throws Exception {
-         return serializer.read(Entry.class, node);
+         return xmlMapper.read(Entry.class, node);
       }
       public void write(OutputNode node, Entry entry) throws Exception {
          if(!node.isCommitted()) {
             node.remove();
          }
-         serializer.write(entry, node.getParent());
+         xmlMapper.write(entry, node.getParent());
       }
    }
    
@@ -72,13 +72,13 @@ public class HideEnclosingConverterTest extends ValidationTestCase {
 
    public void testWrapper() throws Exception{
       Strategy strategy = new AnnotationStrategy();
-      Serializer serializer = new Persister(strategy);
+      XmlMapper xmlMapper = new Persister(strategy);
       Entry entry = new Entry("name", "value");
       EntryHolder holder = new EntryHolder(entry, "test", 10);
       StringWriter writer = new StringWriter();
-      serializer.write(holder, writer);
+      xmlMapper.write(holder, writer);
       System.out.println(writer.toString());
-      serializer.read(EntryHolder.class, writer.toString());
+      xmlMapper.read(EntryHolder.class, writer.toString());
       System.err.println(writer.toString());
       String sourceXml = writer.toString();
       assertElementExists(sourceXml, "/entryHolder");

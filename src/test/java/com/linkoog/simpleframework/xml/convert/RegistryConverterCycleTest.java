@@ -6,7 +6,7 @@ import java.util.List;
 import com.linkoog.simpleframework.xml.annotations.Default;
 import com.linkoog.simpleframework.xml.DefaultType;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.core.Persister;
 import com.linkoog.simpleframework.xml.strategy.CycleStrategy;
 import com.linkoog.simpleframework.xml.stream.CamelCaseStyle;
@@ -19,16 +19,16 @@ import junit.framework.TestCase;
 public class RegistryConverterCycleTest extends TestCase {
 
    public static class PersonConverter implements Converter<Person> {
-      private final Serializer serializer;
-      public PersonConverter(Serializer serializer) {
-         this.serializer = serializer;
+      private final XmlMapper xmlMapper;
+      public PersonConverter(XmlMapper xmlMapper) {
+         this.xmlMapper = xmlMapper;
       }
       public Person read(InputNode node) throws Exception {
-         return serializer.read(PersonDelegate.class, node.getNext());
+         return xmlMapper.read(PersonDelegate.class, node.getNext());
       }
       public void write(OutputNode node, Person value) throws Exception {
          Person person = new PersonDelegate(value);
-         serializer.write(person, node);
+         xmlMapper.write(person, node);
       }
       @Root
       @Default(DefaultType.PROPERTY)
@@ -111,13 +111,13 @@ public class RegistryConverterCycleTest extends TestCase {
       Person person = new Person(address, "Niall", 30);
       CycleStrategy referencer = new CycleStrategy();
       RegistryStrategy strategy = new RegistryStrategy(registry, referencer);
-      Serializer serializer = new Persister(strategy, format);
-      Converter converter = new PersonConverter(serializer);
+      XmlMapper xmlMapper = new Persister(strategy, format);
+      Converter converter = new PersonConverter(xmlMapper);
       Club club = new Club(address);
       
       club.addMember(person);
       registry.bind(Person.class, converter);
       
-      serializer.write(club, System.out);
+      xmlMapper.write(club, System.out);
    }
 }

@@ -40,7 +40,7 @@ import com.linkoog.simpleframework.xml.stream.NodeBuilder;
 import com.linkoog.simpleframework.xml.stream.OutputNode;
 import com.linkoog.simpleframework.xml.transform.matcher.EmptyMatcher;
 import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 
 /**
  * The <code>Persister</code> object is used to provide an implementation
@@ -62,9 +62,9 @@ import com.linkoog.simpleframework.xml.Serializer;
  *
  * @author Niall Gallagher
  * 
- * @see Serializer
+ * @see XmlMapper
  */ 
-public class Persister implements Serializer {
+public class Persister implements XmlMapper {
    
    /**
     * This is used to manage the serialization sessions created/

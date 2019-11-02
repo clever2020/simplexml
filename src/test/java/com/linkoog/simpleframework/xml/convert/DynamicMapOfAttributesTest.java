@@ -8,7 +8,7 @@ import java.util.Set;
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Convert;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Transient;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
@@ -77,9 +77,9 @@ public class DynamicMapOfAttributesTest extends ValidationTestCase {
    
    public void testConverter() throws Exception {
       Strategy strategy = new AnnotationStrategy();
-      Serializer serializer = new Persister(strategy);
+      XmlMapper xmlMapper = new Persister(strategy);
       StringWriter buffer = new StringWriter();
-      Car car = serializer.read(Car.class, SOURCE, false);
+      Car car = xmlMapper.read(Car.class, SOURCE, false);
       
       assertNotNull(car);
       assertEquals(car.length, 3.3);
@@ -88,8 +88,8 @@ public class DynamicMapOfAttributesTest extends ValidationTestCase {
       assertEquals(car.furtherAttributes.get("topSpeed"), "190");
       assertEquals(car.furtherAttributes.get("brand"), "audi");
       
-      serializer.write(car, System.out);
-      serializer.write(car, buffer);
+      xmlMapper.write(car, System.out);
+      xmlMapper.write(car, buffer);
       
       String text = buffer.toString();
       assertElementExists(text, "/Car");

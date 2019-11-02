@@ -7,7 +7,7 @@ import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.ElementListUnion;
 import com.linkoog.simpleframework.xml.annotations.Path;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 
 public class Test3_2Test extends TestCase {
@@ -84,7 +84,7 @@ public class Test3_2Test extends TestCase {
    }
 
    public void test32() throws Exception{
-      Serializer s = new Persister();
+      XmlMapper s = new Persister();
       StringWriter sw = new StringWriter();
       s.write(new Test3_2(new MyElementA(), new MyElementB()), sw);     
       String serializedForm = sw.toString();
@@ -98,7 +98,7 @@ public class Test3_2Test extends TestCase {
    }
    
    public void test33() throws Exception{
-      Serializer s = new Persister();
+      XmlMapper s = new Persister();
       StringWriter sw = new StringWriter();
       s.write(new Test3_3(new MyElementA(), new MyElementB()), sw);     
       String serializedForm = sw.toString();

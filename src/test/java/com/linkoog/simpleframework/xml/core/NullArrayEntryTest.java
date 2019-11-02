@@ -4,7 +4,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementArray;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class NullArrayEntryTest extends ValidationTestCase {
@@ -83,22 +83,22 @@ public class NullArrayEntryTest extends ValidationTestCase {
 
    
    public void testExampleArray() throws Exception {
-      Serializer serializer = new Persister();
-      ExampleArray list = serializer.read(ExampleArray.class, LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExampleArray list = xmlMapper.read(ExampleArray.class, LIST);
       
       list.list = new Entry[] { new Entry("a", 1), new Entry("b", 2), null, null, new Entry("e", 5) };
       
-      serializer.write(list, System.out);
-      validate(list, serializer);      
+      xmlMapper.write(list, System.out);
+      validate(list, xmlMapper);
    }  
    
    public void testExamplePrimitiveArray() throws Exception {
-      Serializer serializer = new Persister();
-      ExamplePrimitiveArray list = serializer.read(ExamplePrimitiveArray.class, PRIMITIVE_LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExamplePrimitiveArray list = xmlMapper.read(ExamplePrimitiveArray.class, PRIMITIVE_LIST);
       
       list.list = new String[] { "a", "b", null, null, "e", null, "f" };
       
-      serializer.write(list, System.out);
-      validate(list, serializer);      
+      xmlMapper.write(list, System.out);
+      validate(list, xmlMapper);
    }
 }

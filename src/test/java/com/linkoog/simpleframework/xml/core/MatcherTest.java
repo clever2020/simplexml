@@ -6,7 +6,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Namespace;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import com.linkoog.simpleframework.xml.transform.Transform;
@@ -140,41 +140,41 @@ public class MatcherTest extends ValidationTestCase {
    
    public void testMatcher() throws Exception {
       Matcher matcher = new ExampleIntegerMatcher();
-      Serializer serializer = new Persister(matcher);
+      XmlMapper xmlMapper = new Persister(matcher);
       Example example = new Example(1, 9999);
       
-      serializer.write(example, System.out);
+      xmlMapper.write(example, System.out);
     
-      validate(serializer, example);
+      validate(xmlMapper, example);
    }
    
    public void testEnumMatcher() throws Exception {
       Matcher matcher = new ExampleEnumMatcher();
-      Serializer serializer = new Persister(matcher);
+      XmlMapper xmlMapper = new Persister(matcher);
       ExampleEnum value = new ExampleEnum(MyEnum.A_1);
       StringWriter writer = new StringWriter();
       
-      serializer.write(value, writer);
+      xmlMapper.write(value, writer);
       
       assertElementHasAttribute(writer.toString(), "/exampleEnum", "value", "A-1");
       
       System.out.println(writer.toString());
       
-      validate(serializer, value);
+      validate(xmlMapper, value);
    }
    
    public void testStringMatcher() throws Exception {
       Matcher matcher = new ExampleStringMatcher();
-      Serializer serializer = new Persister(matcher);
+      XmlMapper xmlMapper = new Persister(matcher);
       EmptyStringExample original = new EmptyStringExample("", null);
       StringWriter writer = new StringWriter();
       
-      serializer.write(original, writer);
+      xmlMapper.write(original, writer);
       
       String text = writer.toString();
       System.out.println(text);
       
-      EmptyStringExample recovered = serializer.read(EmptyStringExample.class, text);
+      EmptyStringExample recovered = xmlMapper.read(EmptyStringExample.class, text);
       
       assertEquals(recovered.emptyValue, original.emptyValue);
       assertEquals(recovered.nullValue, original.nullValue);

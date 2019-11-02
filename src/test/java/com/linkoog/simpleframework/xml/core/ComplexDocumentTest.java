@@ -13,7 +13,7 @@ import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.ElementListUnion;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Text;
 
 public class ComplexDocumentTest extends TestCase {
@@ -616,7 +616,7 @@ public class ComplexDocumentTest extends TestCase {
    
    @SuppressWarnings("unused")
    public void testComplexDocument() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       InputStream source = openDocument();
       
       if(source != null) {
@@ -633,12 +633,12 @@ public class ComplexDocumentTest extends TestCase {
    
          InputStream stream = new ByteArrayInputStream(data);
          long start = System.currentTimeMillis();
-         CTDocument doc = serializer.read(CTDocument.class, stream, false);
+         CTDocument doc = xmlMapper.read(CTDocument.class, stream, false);
          System.err.println("Time taken was "+(System.currentTimeMillis() - start));
    
          stream = new ByteArrayInputStream(data);
          start = System.currentTimeMillis();
-         doc = serializer.read(CTDocument.class, stream, false);
+         doc = xmlMapper.read(CTDocument.class, stream, false);
          System.err.println("Second time taken was "+(System.currentTimeMillis() - start));
          
          List<WordXMLTagsOperation> bodyContentList = doc.getBody().getOperations();

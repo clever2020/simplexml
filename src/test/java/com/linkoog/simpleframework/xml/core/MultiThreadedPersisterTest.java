@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import com.linkoog.simpleframework.xml.annotations.Default;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -33,11 +33,11 @@ public class MultiThreadedPersisterTest extends TestCase {
    
    private static class Worker extends Thread {
       private final CountDownLatch latch;
-      private final Serializer serializer;
+      private final XmlMapper xmlMapper;
       private final Queue<Status> queue;
       private final Example example;
-      public Worker(CountDownLatch latch, Serializer serializer, Queue<Status> queue, Example example) {
-         this.serializer = serializer;
+      public Worker(CountDownLatch latch, XmlMapper xmlMapper, Queue<Status> queue, Example example) {
+         this.xmlMapper = xmlMapper;
          this.example = example;
          this.latch = latch;
          this.queue = queue;
@@ -48,9 +48,9 @@ public class MultiThreadedPersisterTest extends TestCase {
             latch.await();
             for(int i = 0; i < 100; i++) {
                StringWriter writer = new StringWriter();
-               serializer.write(example, writer);
+               xmlMapper.write(example, writer);
                String text = writer.toString();
-               Example copy = serializer.read(Example.class, text);
+               Example copy = xmlMapper.read(Example.class, text);
                Assert.assertEquals(example.name, copy.name);
                Assert.assertEquals(example.value, copy.value);
                Assert.assertEquals(example.number, copy.number);

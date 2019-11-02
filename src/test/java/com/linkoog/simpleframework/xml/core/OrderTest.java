@@ -9,7 +9,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Order;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class OrderTest extends ValidationTestCase {
@@ -76,11 +76,11 @@ public class OrderTest extends ValidationTestCase {
    }
    
    public void testSerializationOrder() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       OrderExample example = new OrderExample("first", "second", "third", "fourth", 1, 2, 3.0);
       StringWriter writer = new StringWriter();
-      serializer.write(example, writer);
-      validate(example, serializer);      
+      xmlMapper.write(example, writer);
+      validate(example, xmlMapper);
       String text = writer.toString();
       
       assertTrue(text.indexOf("first") < text.indexOf("second"));
@@ -90,6 +90,6 @@ public class OrderTest extends ValidationTestCase {
       assertTrue(text.indexOf("two") < text.indexOf("three"));
       
       example = new OrderExample("1st", "2nd", "3rd", "4th", 10, 20, 30.0);           
-      validate(example, serializer);      
+      validate(example, xmlMapper);
    }
 }

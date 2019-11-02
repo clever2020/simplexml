@@ -5,7 +5,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementArray;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 
 public class ArrayEntryTest extends ValidationTestCase {
         
@@ -78,16 +78,16 @@ public class ArrayEntryTest extends ValidationTestCase {
 
    
    public void testExampleArray() throws Exception {
-      Serializer serializer = new Persister();
-      ExampleArray list = serializer.read(ExampleArray.class, LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExampleArray list = xmlMapper.read(ExampleArray.class, LIST);
       
-      validate(list, serializer);      
+      validate(list, xmlMapper);
    }  
    
    public void testExamplePrimitiveArray() throws Exception {
-      Serializer serializer = new Persister();
-      ExamplePrimitiveArray list = serializer.read(ExamplePrimitiveArray.class, PRIMITIVE_LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExamplePrimitiveArray list = xmlMapper.read(ExamplePrimitiveArray.class, PRIMITIVE_LIST);
       
-      validate(list, serializer);      
+      validate(list, xmlMapper);
    }
 }

@@ -3,7 +3,7 @@ package com.linkoog.simpleframework.xml.core;
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.ElementArray;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Text;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
@@ -76,7 +76,7 @@ public class ValidateTest extends ValidationTestCase {
    }
    
    public void testVersionMissing() throws Exception {
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       boolean success = false;
       
       try {
@@ -89,7 +89,7 @@ public class ValidateTest extends ValidationTestCase {
    }
    
    public void testNameMissing() throws Exception {
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       boolean success = false;
       
       try {
@@ -102,7 +102,7 @@ public class ValidateTest extends ValidationTestCase {
    }
    
    public void testTextMissing() throws Exception {
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       boolean success = false;
       
       try {
@@ -115,7 +115,7 @@ public class ValidateTest extends ValidationTestCase {
    }
    
    public void testExtraElement() throws Exception {
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       boolean success = false;
       
       try {

@@ -8,7 +8,7 @@ import com.linkoog.simpleframework.xml.annotations.Convert;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
 import com.linkoog.simpleframework.xml.strategy.Strategy;
@@ -61,7 +61,7 @@ public class ContactEntryTest extends ValidationTestCase {
   
    public void testContact() throws Exception {
       Strategy strategy = new AnnotationStrategy();
-      Serializer serializer = new Persister(strategy);
+      XmlMapper xmlMapper = new Persister(strategy);
       EntryList list = new EntryList("Other", "Value");
       StringWriter writer = new StringWriter();
       
@@ -73,10 +73,10 @@ public class ContactEntryTest extends ValidationTestCase {
       list.getOtherList().add(new ExampleConverters.Entry("2", "TWO"));
       list.getOtherList().add(new ExampleConverters.Entry("3", "THREE"));
       
-      serializer.write(list, writer);
+      xmlMapper.write(list, writer);
       
       String text = writer.toString();
-      EntryList copy = serializer.read(EntryList.class, text);
+      EntryList copy = xmlMapper.read(EntryList.class, text);
       
       assertEquals(copy.getList().get(0).getName(), list.getList().get(0).getName());
       assertEquals(copy.getList().get(0).getValue(), list.getList().get(0).getValue());

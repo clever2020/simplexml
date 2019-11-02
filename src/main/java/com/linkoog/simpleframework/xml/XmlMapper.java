@@ -43,7 +43,7 @@ import com.linkoog.simpleframework.xml.stream.OutputNode;
  * 
  * @author Niall Gallagher
  */
-public interface Serializer {
+public interface XmlMapper {
    
    /**
     * This <code>read</code> method will read the contents of the XML

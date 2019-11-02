@@ -4,7 +4,7 @@ import java.io.StringWriter;
 
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Text;
 import com.linkoog.simpleframework.xml.transform.matcher.Matcher;
 import com.linkoog.simpleframework.xml.transform.Transform;
@@ -66,12 +66,12 @@ public class TextConstructorInjectionWithTransformTest extends TestCase {
     
    public void testConstructor() throws Exception {
       Embargo embargo = new Embargo(new DateTime("2010-06-02T12:00:12"), "cuba");
-      Serializer serializer = new Persister(new DateTimeMatcher());
+      XmlMapper xmlMapper = new Persister(new DateTimeMatcher());
       StringWriter writer = new StringWriter();
       
-      serializer.write(embargo, writer);
+      xmlMapper.write(embargo, writer);
 
-      Embargo embargoout = serializer.read(Embargo.class, writer.toString());
+      Embargo embargoout = xmlMapper.read(Embargo.class, writer.toString());
 
       System.out.println(writer.toString());
    }

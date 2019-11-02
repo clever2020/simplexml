@@ -6,7 +6,7 @@ import java.io.InputStream;
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class PullParserStackOverflowTest extends ValidationTestCase {
@@ -32,12 +32,12 @@ public class PullParserStackOverflowTest extends ValidationTestCase {
    }
    
    public void testBrokenStart() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       byte[] data = BROKEN_ROOT_INCOMPLETE.getBytes("ISO-8859-1");
       InputStream stream = new ByteArrayInputStream(data);
       boolean exception = false;
       try {
-         serializer.read(Level.class, stream);
+         xmlMapper.read(Level.class, stream);
       }catch(Exception e) {
          e.printStackTrace();
          exception = true;
@@ -46,12 +46,12 @@ public class PullParserStackOverflowTest extends ValidationTestCase {
    }
    
    public void testBrokenStartButComplete() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       byte[] data = BROKEN_ROOT_COMPLETE.getBytes("ISO-8859-1");
       InputStream stream = new ByteArrayInputStream(data);
       boolean exception = false;
       try {
-         serializer.read(Level.class, stream);
+         xmlMapper.read(Level.class, stream);
       }catch(Exception e) {
          e.printStackTrace();
          exception = true;
@@ -60,12 +60,12 @@ public class PullParserStackOverflowTest extends ValidationTestCase {
    }
    
    public void testBrokenElementButComplete() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       byte[] data = BROKEN_ELEMENT_COMPLETE.getBytes("ISO-8859-1");
       InputStream stream = new ByteArrayInputStream(data);
       boolean exception = false;
       try {
-         serializer.read(Level.class, stream);
+         xmlMapper.read(Level.class, stream);
       }catch(Exception e) {
          e.printStackTrace();
          exception = true;

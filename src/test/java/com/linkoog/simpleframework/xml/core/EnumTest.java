@@ -2,7 +2,7 @@ package com.linkoog.simpleframework.xml.core;
 
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 
 public class EnumTest extends TestCase {
@@ -54,15 +54,15 @@ public class EnumTest extends TestCase {
     
     
     public void testEnum() throws Exception {
-        Serializer serializer = new Persister();
-        EnumBug bug = serializer.read(EnumBug.class, SOURCE);
+        XmlMapper xmlMapper = new Persister();
+        EnumBug bug = xmlMapper.read(EnumBug.class, SOURCE);
      
         assertEquals(bug.getType(), PartType.A);
     }
     
     public void testVargsEnum() throws Exception {
-        Serializer serializer = new Persister();
-        EnumVariableArgumentsBug bug = serializer.read(EnumVariableArgumentsBug.class, LIST);
+        XmlMapper xmlMapper = new Persister();
+        EnumVariableArgumentsBug bug = xmlMapper.read(EnumVariableArgumentsBug.class, LIST);
      
         assertEquals(bug.getTypes()[0], PartType.A);
     }

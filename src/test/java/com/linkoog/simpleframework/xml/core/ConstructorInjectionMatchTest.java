@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 
 /**
  * Created by IntelliJ IDEA.
@@ -57,10 +57,10 @@ public class ConstructorInjectionMatchTest extends TestCase {
         SimpleElementOne one = new SimpleElementOne(two);
         RootElement root = new RootElement(one);
 
-        Serializer serializer = new Persister();
+        XmlMapper xmlMapper = new Persister();
         StringWriter output = new StringWriter();
-        serializer.write(root, output);
+        xmlMapper.write(root, output);
         System.out.println(output.toString());
-        serializer.read(RootElement.class, output.toString());
+        xmlMapper.read(RootElement.class, output.toString());
     }
 }

@@ -8,7 +8,7 @@ import com.linkoog.simpleframework.xml.annotations.Default;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementMap;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.convert.AnnotationStrategy;
 import com.linkoog.simpleframework.xml.annotations.Convert;
@@ -79,7 +79,7 @@ public class ConverterMapTest extends ValidationTestCase {
    
    public void testMap() throws Exception {
       Strategy strategy = new AnnotationStrategy();
-      Serializer serializer = new Persister(strategy);
+      XmlMapper xmlMapper = new Persister(strategy);
       MapHolder holder = new MapHolder();
       
       holder.put("a", "A");
@@ -89,9 +89,9 @@ public class ConverterMapTest extends ValidationTestCase {
       holder.put("e", "E");
       holder.put("f", "F");
       
-      serializer.write(holder, System.out);
+      xmlMapper.write(holder, System.out);
       
-      validate(holder, serializer);
+      validate(holder, xmlMapper);
    }
 
 }

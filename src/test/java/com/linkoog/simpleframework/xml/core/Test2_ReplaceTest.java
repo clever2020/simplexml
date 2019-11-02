@@ -8,7 +8,7 @@ import java.util.Arrays;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 
 public class Test2_ReplaceTest extends TestCase {
@@ -60,7 +60,7 @@ public class Test2_ReplaceTest extends TestCase {
    }
 
    public void testReplace() throws Exception{
-      Serializer s = new Persister();
+      XmlMapper s = new Persister();
       StringWriter sw = new StringWriter();
       Test2A element = new Test2A(null);
       s.write(new Test2A(element, element), sw);      

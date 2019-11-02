@@ -11,7 +11,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Text;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.strategy.Type;
@@ -272,7 +272,7 @@ public class DecoratorTest extends ValidationTestCase {
         Strategy strategy = new TreeStrategy("class", "length");
         Manipulator manipulator = new Manipulator("class", "type");
         Decorator decorator = new Decorator(manipulator, strategy);
-        Serializer serializer = new Persister(decorator);
+        XmlMapper xmlMapper = new Persister(decorator);
         List<Friend> friends = new ArrayList<Friend>();
         
         Address tomAddress = new Address("14 High Steet", "London", "UK");
@@ -300,9 +300,9 @@ public class DecoratorTest extends ValidationTestCase {
         manipulator.resolve(GoldMember.class, "gold-member");
         
         StringWriter text = new StringWriter();
-        serializer.write(original, text);
+        xmlMapper.write(original, text);
         String result = text.toString();
-        FriendList recovered = serializer.read(FriendList.class, result);
+        FriendList recovered = xmlMapper.read(FriendList.class, result);
         
         assertEquals(original.getFriends().getClass(), recovered.getFriends().getClass());
         assertEquals(original.getFriends().get(0).getStatus(), recovered.getFriends().get(0).getStatus());
@@ -317,7 +317,7 @@ public class DecoratorTest extends ValidationTestCase {
         assertEquals(original.getFriends().get(1).getMember().getAddress().getCountry(), recovered.getFriends().get(1).getMember().getAddress().getCountry());   
         assertEquals(original.getFriends().get(1).getMember().getAddress().getStreet(), recovered.getFriends().get(1).getMember().getAddress().getStreet());  
         
-        validate(serializer, original);
+        validate(xmlMapper, original);
     }
 
 }

@@ -10,7 +10,7 @@ import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.Namespace;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Text;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
@@ -84,9 +84,9 @@ public class AnnotationStrategyTest extends ValidationTestCase {
    
    public void testAnnotationStrategy() throws Exception {
       Strategy strategy = new AnnotationStrategy();
-      Serializer serializer = new Persister(strategy);
+      XmlMapper xmlMapper = new Persister(strategy);
       StringWriter writer = new StringWriter();
-      FarmExample example = serializer.read(FarmExample.class, SOURCE);
+      FarmExample example = xmlMapper.read(FarmExample.class, SOURCE);
       
       example.getTime().add(10);
       example.getTime().add(11);
@@ -99,8 +99,8 @@ public class AnnotationStrategyTest extends ValidationTestCase {
       assertEquals(example.getChicken().getAge(), 1);
       assertEquals(example.getChicken().getLegs(), 2);
       
-      serializer.write(example, System.out);
-      serializer.write(example, writer);
+      xmlMapper.write(example, System.out);
+      xmlMapper.write(example, writer);
       
       String text = writer.toString();
       

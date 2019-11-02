@@ -8,7 +8,7 @@ import java.util.Map;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementMap;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class MapNullTest extends ValidationTestCase {
@@ -237,87 +237,87 @@ public class MapNullTest extends ValidationTestCase {
    }
    
    public void testEmptyCompositeValue() throws Exception {
-      Serializer serializer = new Persister();
-      ComplexMap value = serializer.read(ComplexMap.class, EMPTY_COMPOSITE_VALUE);
-      boolean valid = serializer.validate(ComplexMap.class, EMPTY_COMPOSITE_VALUE);
+      XmlMapper xmlMapper = new Persister();
+      ComplexMap value = xmlMapper.read(ComplexMap.class, EMPTY_COMPOSITE_VALUE);
+      boolean valid = xmlMapper.validate(ComplexMap.class, EMPTY_COMPOSITE_VALUE);
       
       assertTrue(valid);
       
-      validate(value, serializer);
+      validate(value, xmlMapper);
    }
    
    public void testEmptyCompositeBlankValue() throws Exception {
-      Serializer serializer = new Persister();
-      ComplexMap value = serializer.read(ComplexMap.class, EMPTY_COMPOSITE_BLANK_VALUE);
-      boolean valid = serializer.validate(ComplexMap.class, EMPTY_COMPOSITE_BLANK_VALUE);
+      XmlMapper xmlMapper = new Persister();
+      ComplexMap value = xmlMapper.read(ComplexMap.class, EMPTY_COMPOSITE_BLANK_VALUE);
+      boolean valid = xmlMapper.validate(ComplexMap.class, EMPTY_COMPOSITE_BLANK_VALUE);
       
       assertTrue(valid);
       
-      validate(value, serializer);
+      validate(value, xmlMapper);
    }
    
    public void testEmptyCompositeKey() throws Exception {
-      Serializer serializer = new Persister();
-      ComplexMap value = serializer.read(ComplexMap.class, EMPTY_COMPOSITE_KEY);
-      boolean valid = serializer.validate(ComplexMap.class, EMPTY_COMPOSITE_KEY);
+      XmlMapper xmlMapper = new Persister();
+      ComplexMap value = xmlMapper.read(ComplexMap.class, EMPTY_COMPOSITE_KEY);
+      boolean valid = xmlMapper.validate(ComplexMap.class, EMPTY_COMPOSITE_KEY);
       
       assertTrue(valid);
       
-      validate(value, serializer);      
+      validate(value, xmlMapper);
    }
    
    public void testEmptyCompositeBlankKey() throws Exception {
-      Serializer serializer = new Persister();
-      ComplexMap value = serializer.read(ComplexMap.class, EMPTY_COMPOSITE_BLANK_KEY);     
-      boolean valid = serializer.validate(ComplexMap.class, EMPTY_COMPOSITE_BLANK_KEY);
+      XmlMapper xmlMapper = new Persister();
+      ComplexMap value = xmlMapper.read(ComplexMap.class, EMPTY_COMPOSITE_BLANK_KEY);
+      boolean valid = xmlMapper.validate(ComplexMap.class, EMPTY_COMPOSITE_BLANK_KEY);
       
       assertTrue(valid);
       
-      validate(value, serializer);      
+      validate(value, xmlMapper);
    }
    
    public void testEmptyPrimitiveValue() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveMap value = serializer.read(PrimitiveMap.class, EMPTY_PRIMITIVE_VALUE);     
-      boolean valid = serializer.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_VALUE);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveMap value = xmlMapper.read(PrimitiveMap.class, EMPTY_PRIMITIVE_VALUE);
+      boolean valid = xmlMapper.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_VALUE);
       
       assertTrue(valid);
       
-      validate(value, serializer);      
+      validate(value, xmlMapper);
    }
    
    public void testEmptyPrimitiveBlankValue() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveMap value = serializer.read(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_VALUE);     
-      boolean valid = serializer.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_VALUE);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveMap value = xmlMapper.read(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_VALUE);
+      boolean valid = xmlMapper.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_VALUE);
       
       assertTrue(valid);
       
-      validate(value, serializer);      
+      validate(value, xmlMapper);
    }
    
    public void testEmptyPrimitiveKey() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveMap value = serializer.read(PrimitiveMap.class, EMPTY_PRIMITIVE_KEY);     
-      boolean valid = serializer.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_KEY);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveMap value = xmlMapper.read(PrimitiveMap.class, EMPTY_PRIMITIVE_KEY);
+      boolean valid = xmlMapper.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_KEY);
       
       assertTrue(valid);
       
-      validate(value, serializer);      
+      validate(value, xmlMapper);
    }
    
    public void testEmptyPrimitiveBlankKey() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveMap value = serializer.read(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_KEY);     
-      boolean valid = serializer.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_KEY);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveMap value = xmlMapper.read(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_KEY);
+      boolean valid = xmlMapper.validate(PrimitiveMap.class, EMPTY_PRIMITIVE_BLANK_KEY);
       
       assertTrue(valid);
       
-      validate(value, serializer);      
+      validate(value, xmlMapper);
    }
    
    public void testNullValue() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       PrimitiveMap primitiveMap = new PrimitiveMap();
       
       primitiveMap.map.put("a", new BigDecimal(1));
@@ -326,16 +326,16 @@ public class MapNullTest extends ValidationTestCase {
       primitiveMap.map.put(null, new BigDecimal(4));
       
       StringWriter out = new StringWriter();
-      serializer.write(primitiveMap, out);
+      xmlMapper.write(primitiveMap, out);
       
-      primitiveMap = serializer.read(PrimitiveMap.class, out.toString());
+      primitiveMap = xmlMapper.read(PrimitiveMap.class, out.toString());
       
       assertEquals(primitiveMap.map.get(null), new BigDecimal(4));
       assertEquals(primitiveMap.map.get("c"), null);
       assertEquals(primitiveMap.map.get("a"), new BigDecimal(1));
       assertEquals(primitiveMap.map.get("b"), new BigDecimal(2));
       
-      validate(primitiveMap, serializer);           
+      validate(primitiveMap, xmlMapper);
       
       ComplexMap complexMap = new ComplexMap();
       
@@ -344,16 +344,16 @@ public class MapNullTest extends ValidationTestCase {
       complexMap.map.put(null, new MapEntry("3", "3"));
       complexMap.map.put(new CompositeKey("name.4", "address.4"), null);
       
-      validate(complexMap, serializer);
+      validate(complexMap, xmlMapper);
       
-      ComplexMap emptyNull = serializer.read(ComplexMap.class, EMPTY_AS_NULL);
+      ComplexMap emptyNull = xmlMapper.read(ComplexMap.class, EMPTY_AS_NULL);
       
       assertEquals(emptyNull.getValue(new CompositeKey("name.1", "address.1")), "1");
       assertEquals(emptyNull.getValue(new CompositeKey("name.2", "address.2")), "2");
       assertEquals(emptyNull.getValue(null), "3");
       assertEquals(emptyNull.getValue(new CompositeKey("name.4", "address.4")), null);
       
-      validate(emptyNull, serializer);
+      validate(emptyNull, xmlMapper);
    }
    
    // TODO test the null values and exceptions with the map

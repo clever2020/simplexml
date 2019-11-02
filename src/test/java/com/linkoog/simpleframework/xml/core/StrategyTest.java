@@ -6,7 +6,7 @@ import java.util.Map;
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.strategy.Strategy;
 import com.linkoog.simpleframework.xml.strategy.Type;
 import com.linkoog.simpleframework.xml.strategy.Value;
@@ -117,7 +117,7 @@ public class StrategyTest extends TestCase {
 
    public void testExampleStrategy() throws Exception {    
       ExampleStrategy strategy = new ExampleStrategy(this);           
-      Serializer persister = new Persister(strategy);
+      XmlMapper persister = new Persister(strategy);
       Example example = persister.read(Example.class, ELEMENT);
       
       assertTrue(example instanceof ExampleExample);

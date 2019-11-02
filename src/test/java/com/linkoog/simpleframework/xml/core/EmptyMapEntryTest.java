@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementMap;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.strategy.CycleStrategy;
 import com.linkoog.simpleframework.xml.strategy.Strategy;
@@ -46,7 +46,7 @@ public class EmptyMapEntryTest extends ValidationTestCase {
     */
    public void testEmptyMapEntry() throws Exception {
        Strategy resolver = new CycleStrategy("id", "ref");
-       Serializer s = new Persister(resolver);
+       XmlMapper s = new Persister(resolver);
        StringWriter w = new StringWriter();
        SimpleBug1 bug1 = new SimpleBug1();
        

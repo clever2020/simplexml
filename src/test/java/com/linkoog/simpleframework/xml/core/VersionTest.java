@@ -6,7 +6,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Namespace;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Version;
 import com.linkoog.simpleframework.xml.strategy.Value;
 import junit.framework.TestCase;
@@ -123,7 +123,7 @@ public class VersionTest extends TestCase {
    }
    
    public void testVersion1() throws Exception {           
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       Example example = persister.read(Example1.class, VERSION_1);
       
       assertTrue(example instanceof Example1);
@@ -137,7 +137,7 @@ public class VersionTest extends TestCase {
    }
 
    public void testVersion2() throws Exception {           
-      Serializer persister = new Persister();
+      XmlMapper persister = new Persister();
       Example example = persister.read(Example2.class, VERSION_2);      
       
       assertTrue(example instanceof Example2);

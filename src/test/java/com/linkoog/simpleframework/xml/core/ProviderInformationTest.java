@@ -12,7 +12,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Order;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import junit.framework.TestCase;
 
 public class ProviderInformationTest extends TestCase  {
@@ -123,11 +123,11 @@ public class ProviderInformationTest extends TestCase  {
      public SolutionPackageDeploymentDescriptor( InputStream aInputStream ) 
            throws Exception
      {
-        Serializer serializer = new Persister();
+        XmlMapper xmlMapper = new Persister();
         try
         {
            itsSolutionPackageDeployment = 
-              serializer.read( SolutionPackageDeploymentType.class, aInputStream, false );
+              xmlMapper.read( SolutionPackageDeploymentType.class, aInputStream, false );
         }
         catch (Exception exception)
         {
@@ -137,11 +137,11 @@ public class ProviderInformationTest extends TestCase  {
      }
      public SolutionPackageDeploymentDescriptor( File aFile ) throws Exception
      {
-        Serializer serializer = new Persister();
+        XmlMapper xmlMapper = new Persister();
         try
         {
            itsSolutionPackageDeployment = 
-              serializer.read( SolutionPackageDeploymentType.class, aFile, false );
+              xmlMapper.read( SolutionPackageDeploymentType.class, aFile, false );
         }
         catch (Exception exception)
         {
@@ -160,11 +160,11 @@ public class ProviderInformationTest extends TestCase  {
      }
      public String toString()
      {
-        Serializer serializer = new Persister();
+        XmlMapper xmlMapper = new Persister();
         StringWriter xmlWriter = new StringWriter();
         try
         {
-           serializer.write( itsSolutionPackageDeployment, xmlWriter );
+           xmlMapper.write( itsSolutionPackageDeployment, xmlWriter );
         }
         catch (Exception exception)
         {
@@ -179,10 +179,10 @@ public class ProviderInformationTest extends TestCase  {
      }
      public void writeToFile( File aOutputFile ) throws Exception
      {
-        Serializer serializer = new Persister();
+        XmlMapper xmlMapper = new Persister();
         try
         {
-           serializer.write( itsSolutionPackageDeployment, aOutputFile );
+           xmlMapper.write( itsSolutionPackageDeployment, aOutputFile );
         }
         catch (Exception exception)
         {

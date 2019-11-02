@@ -6,7 +6,7 @@ import com.linkoog.simpleframework.xml.annotations.Convert;
 import com.linkoog.simpleframework.xml.annotations.Default;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.core.Persister;
 import com.linkoog.simpleframework.xml.strategy.Strategy;
 import com.linkoog.simpleframework.xml.stream.InputNode;
@@ -26,9 +26,9 @@ public class WrapperTest extends TestCase {
    }
    
    private static class WrapperConverter implements Converter<Wrapper> {
-      private final Serializer serializer;
-      public WrapperConverter(Serializer serializer) {
-         this.serializer = serializer;
+      private final XmlMapper xmlMapper;
+      public WrapperConverter(XmlMapper xmlMapper) {
+         this.xmlMapper = xmlMapper;
       }
       public Wrapper read(InputNode node) throws Exception {
          InputNode type = node.getAttribute("type");
@@ -36,7 +36,7 @@ public class WrapperTest extends TestCase {
          String className = type.getValue();
          Object value = null;
          if(child != null) {
-            value = serializer.read(Class.forName(className), child);
+            value = xmlMapper.read(Class.forName(className), child);
          }
          return new Wrapper(value);
       }
@@ -45,7 +45,7 @@ public class WrapperTest extends TestCase {
          Class type = value.getClass();
          String className = type.getName();
          node.setAttribute("type", className);
-         serializer.write(value, node);
+         xmlMapper.write(value, node);
       }
    } 
    
@@ -73,15 +73,15 @@ public class WrapperTest extends TestCase {
    public void testWrapper() throws Exception{
       Registry registry = new Registry();
       Strategy strategy = new RegistryStrategy(registry);
-      Serializer serializer = new Persister(strategy);
+      XmlMapper xmlMapper = new Persister(strategy);
       Entry entry = new Entry("name", "value");
       Wrapper wrapper = new Wrapper(entry);
       WrapperExample example = new WrapperExample(wrapper);
-      WrapperConverter converter = new WrapperConverter(serializer);
+      WrapperConverter converter = new WrapperConverter(xmlMapper);
       StringWriter writer = new StringWriter();
       registry.bind(Wrapper.class, converter);
-      serializer.write(example, writer);
-      serializer.read(WrapperExample.class, writer.toString());
+      xmlMapper.write(example, writer);
+      xmlMapper.read(WrapperExample.class, writer.toString());
       System.err.println(writer.toString());
    }
 }

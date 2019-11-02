@@ -12,7 +12,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.filter.Filter;
 import com.linkoog.simpleframework.xml.strategy.Type;
@@ -203,7 +203,7 @@ public class PerformanceTest extends ValidationTestCase {
    }
    
    public void testCompareToOtherSerializers() throws Exception { 
-      Serializer simpleSerializer = new Persister(new VisitorStrategy(new Visitor(){
+      XmlMapper simpleXmlMapper = new Persister(new VisitorStrategy(new Visitor(){
          public void read(Type type, NodeMap<InputNode> node) throws Exception {
             if(node.getNode().isRoot()) {
                System.err.println(node.getNode().getSource().getClass());
@@ -211,14 +211,14 @@ public class PerformanceTest extends ValidationTestCase {
          }
          public void write(Type type, NodeMap<OutputNode> node){}
       }));
-      RootEntry entry = simpleSerializer.read(RootEntry.class, BASIC_ENTRY);
+      RootEntry entry = simpleXmlMapper.read(RootEntry.class, BASIC_ENTRY);
       ByteArrayOutputStream simpleBuffer = new ByteArrayOutputStream();
       ByteArrayOutputStream javaBuffer = new ByteArrayOutputStream();
       //ByteArrayOutputStream xstreamBuffer = new ByteArrayOutputStream();
       ObjectOutputStream javaSerializer = new ObjectOutputStream(javaBuffer);
       //XStream xstreamSerializer = new XStream();
       
-      simpleSerializer.write(entry, simpleBuffer);
+      simpleXmlMapper.write(entry, simpleBuffer);
       //xstreamSerializer.toXML(entry, xstreamBuffer);
       javaSerializer.writeObject(entry);
 

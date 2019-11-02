@@ -9,7 +9,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementMap;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class MapTest extends ValidationTestCase {
@@ -459,103 +459,103 @@ public class MapTest extends ValidationTestCase {
    }
    
    public void testEntryMap() throws Exception {
-      Serializer serializer = new Persister();
-      EntryMap example = serializer.read(EntryMap.class, ENTRY_MAP);
+      XmlMapper xmlMapper = new Persister();
+      EntryMap example = xmlMapper.read(EntryMap.class, ENTRY_MAP);
       
       assertEquals("example 1", example.getValue("a"));
       assertEquals("example 2", example.getValue("b"));
       assertEquals("example 3", example.getValue("c"));
       assertEquals("example 4", example.getValue("d"));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testStringMap() throws Exception {
-      Serializer serializer = new Persister();
-      StringMap example = serializer.read(StringMap.class, STRING_MAP);
+      XmlMapper xmlMapper = new Persister();
+      StringMap example = xmlMapper.read(StringMap.class, STRING_MAP);
       
       assertEquals("example 1", example.getValue("a"));
       assertEquals("example 2", example.getValue("b"));
       assertEquals("example 3", example.getValue("c"));
       assertEquals("example 4", example.getValue("d"));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testComplexMap() throws Exception {
-      Serializer serializer = new Persister();
-      ComplexMap example = serializer.read(ComplexMap.class, COMPLEX_MAP);
+      XmlMapper xmlMapper = new Persister();
+      ComplexMap example = xmlMapper.read(ComplexMap.class, COMPLEX_MAP);
       
       assertEquals("example 1", example.getValue(new CompositeKey("name 1", "address 1")));
       assertEquals("example 2", example.getValue(new CompositeKey("name 2", "address 2")));
       assertEquals("example 3", example.getValue(new CompositeKey("name 3", "address 3")));
       assertEquals("example 4", example.getValue(new CompositeKey("name 4", "address 4")));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testPrimitiveMap() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveMap example = serializer.read(PrimitiveMap.class, PRIMITIVE_MAP);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveMap example = xmlMapper.read(PrimitiveMap.class, PRIMITIVE_MAP);
       
       assertEquals(new BigDecimal("1.0"), example.getValue("one"));
       assertEquals(new BigDecimal("2.0"), example.getValue("two"));
       assertEquals(new BigDecimal("3.0"), example.getValue("three"));
       assertEquals(new BigDecimal("4.0"), example.getValue("four"));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testPrimitiveValueOverrideMap() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveValueOverrideMap example = serializer.read(PrimitiveValueOverrideMap.class, PRIMITIVE_VALUE_OVERRIDE_MAP);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveValueOverrideMap example = xmlMapper.read(PrimitiveValueOverrideMap.class, PRIMITIVE_VALUE_OVERRIDE_MAP);
       
       assertEquals(new BigDecimal("1.0"), example.getValue("one"));
       assertEquals(new BigDecimal("2.0"), example.getValue("two"));
       assertEquals(new BigDecimal("3.0"), example.getValue("three"));
       assertEquals(new BigDecimal("4.0"), example.getValue("four"));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testPrimitiveValueKeyOverrideMap() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveValueKeyOverrideMap example = serializer.read(PrimitiveValueKeyOverrideMap.class, PRIMITIVE_VALUE_KEY_OVERRIDE_MAP);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveValueKeyOverrideMap example = xmlMapper.read(PrimitiveValueKeyOverrideMap.class, PRIMITIVE_VALUE_KEY_OVERRIDE_MAP);
       
       assertEquals(new BigDecimal("1.0"), example.getValue("one"));
       assertEquals(new BigDecimal("2.0"), example.getValue("two"));
       assertEquals(new BigDecimal("3.0"), example.getValue("three"));
       assertEquals(new BigDecimal("4.0"), example.getValue("four"));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testComplexValueKeyOverrideMap() throws Exception {
-      Serializer serializer = new Persister();
-      ComplexValueKeyOverrideMap example = serializer.read(ComplexValueKeyOverrideMap.class, COMPLEX_VALUE_KEY_OVERRIDE_MAP);
+      XmlMapper xmlMapper = new Persister();
+      ComplexValueKeyOverrideMap example = xmlMapper.read(ComplexValueKeyOverrideMap.class, COMPLEX_VALUE_KEY_OVERRIDE_MAP);
       
       assertEquals("example 1", example.getValue(new CompositeKey("name 1", "address 1")));
       assertEquals("example 2", example.getValue(new CompositeKey("name 2", "address 2")));
       assertEquals("example 3", example.getValue(new CompositeKey("name 3", "address 3")));
       assertEquals("example 4", example.getValue(new CompositeKey("name 4", "address 4")));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testPrimitiveInlineMap() throws Exception {
-      Serializer serializer = new Persister();
-      PrimitiveInlineMap example = serializer.read(PrimitiveInlineMap.class, PRIMITIVE_INLINE_MAP);
+      XmlMapper xmlMapper = new Persister();
+      PrimitiveInlineMap example = xmlMapper.read(PrimitiveInlineMap.class, PRIMITIVE_INLINE_MAP);
       
       assertEquals(new BigDecimal("1.0"), example.getValue("one"));
       assertEquals(new BigDecimal("2.0"), example.getValue("two"));
       assertEquals(new BigDecimal("3.0"), example.getValue("three"));
       assertEquals(new BigDecimal("4.0"), example.getValue("four"));
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
    
    public void testNullValue() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       PrimitiveMap primitiveMap = new PrimitiveMap();
       
       primitiveMap.map.put("a", new BigDecimal(1));
@@ -564,16 +564,16 @@ public class MapTest extends ValidationTestCase {
       primitiveMap.map.put(null, new BigDecimal(4));
       
       StringWriter out = new StringWriter();
-      serializer.write(primitiveMap, out);
+      xmlMapper.write(primitiveMap, out);
       
-      primitiveMap = serializer.read(PrimitiveMap.class, out.toString());
+      primitiveMap = xmlMapper.read(PrimitiveMap.class, out.toString());
       
       assertEquals(primitiveMap.map.get(null), new BigDecimal(4));
       assertEquals(primitiveMap.map.get("c"), null);
       assertEquals(primitiveMap.map.get("a"), new BigDecimal(1));
       assertEquals(primitiveMap.map.get("b"), new BigDecimal(2));
       
-      validate(primitiveMap, serializer);           
+      validate(primitiveMap, xmlMapper);
       
       ComplexMap complexMap = new ComplexMap();
       
@@ -582,13 +582,13 @@ public class MapTest extends ValidationTestCase {
       complexMap.map.put(null, new MapEntry("3", "3"));
       complexMap.map.put(new CompositeKey("name.4", "address.4"), null);
       
-      validate(complexMap, serializer);
+      validate(complexMap, xmlMapper);
    }
    
    public void testIndexExample() throws Exception {
-      Serializer serializer = new Persister();
-      IndexConfig config = serializer.read(IndexConfig.class, INDEX_EXAMPLE);
+      XmlMapper xmlMapper = new Persister();
+      IndexConfig config = xmlMapper.read(IndexConfig.class, INDEX_EXAMPLE);
       
-      validate(config, serializer);
+      validate(config, xmlMapper);
    }
 }

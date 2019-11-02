@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.annotations.Text;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
@@ -69,7 +69,7 @@ public class MixTest extends ValidationTestCase {
    }
    
    public void testMix() throws Exception {
-      Serializer serializer = new Persister();
+      XmlMapper xmlMapper = new Persister();
       MixExample example = new MixExample();
       StringWriter source = new StringWriter();
       
@@ -84,19 +84,19 @@ public class MixTest extends ValidationTestCase {
      // example.put("key 3", 3);
      // example.put("key 4", new Entry("4", "value 4"));
       
-      serializer.write(example, System.out);
-      serializer.write(example, source);   
-      serializer.validate(MixExample.class, source.toString());
+      xmlMapper.write(example, System.out);
+      xmlMapper.write(example, source);
+      xmlMapper.validate(MixExample.class, source.toString());
       
-      MixExample other = serializer.read(MixExample.class, source.toString());
+      MixExample other = xmlMapper.read(MixExample.class, source.toString());
       
-      serializer.write(other, System.out);
+      xmlMapper.write(other, System.out);
       
      // assertEquals(example.get(0), "text");
      // assertEquals(example.get(1), 1);      
      // assertEquals(example.get(2), true);
       
-      validate(example, serializer);
+      validate(example, xmlMapper);
    }
 
 }

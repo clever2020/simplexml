@@ -6,7 +6,7 @@ import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 public class CollectionEntryTest extends ValidationTestCase {
@@ -124,30 +124,30 @@ public class CollectionEntryTest extends ValidationTestCase {
    }
    
    public void testExampleCollection() throws Exception {
-      Serializer serializer = new Persister();
-      ExampleCollection list = serializer.read(ExampleCollection.class, LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExampleCollection list = xmlMapper.read(ExampleCollection.class, LIST);
       
-      validate(list, serializer);      
+      validate(list, xmlMapper);
    }  
    
    public void testExampleInlineCollection() throws Exception {
-      Serializer serializer = new Persister();
-      ExampleInlineCollection list = serializer.read(ExampleInlineCollection.class, INLINE_LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExampleInlineCollection list = xmlMapper.read(ExampleInlineCollection.class, INLINE_LIST);
       
-      validate(list, serializer);      
+      validate(list, xmlMapper);
    }  
    
    public void testExamplePrimitiveInlineCollection() throws Exception {
-      Serializer serializer = new Persister();
-      ExamplePrimitiveInlineCollection list = serializer.read(ExamplePrimitiveInlineCollection.class, INLINE_PRIMITIVE_LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExamplePrimitiveInlineCollection list = xmlMapper.read(ExamplePrimitiveInlineCollection.class, INLINE_PRIMITIVE_LIST);
       
-      validate(list, serializer);      
+      validate(list, xmlMapper);
    }
    
    public void testExamplePrimitiveCollection() throws Exception {
-      Serializer serializer = new Persister();
-      ExamplePrimitiveCollection list = serializer.read(ExamplePrimitiveCollection.class, PRIMITIVE_LIST);
+      XmlMapper xmlMapper = new Persister();
+      ExamplePrimitiveCollection list = xmlMapper.read(ExamplePrimitiveCollection.class, PRIMITIVE_LIST);
       
-      validate(list, serializer);      
+      validate(list, xmlMapper);
    }
 }

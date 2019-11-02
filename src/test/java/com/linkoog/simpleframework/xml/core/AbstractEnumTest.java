@@ -6,15 +6,15 @@ import junit.framework.TestCase;
 
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 
 public class AbstractEnumTest extends TestCase {
 
    public void testFoo() throws Exception {
-   final Serializer serializer = new Persister();
+   final XmlMapper xmlMapper = new Persister();
    final FooObject fooObject = new FooObject();
    fooObject.setFoo(Foo.NAY);
-   serializer.write(fooObject, new StringWriter());
+   xmlMapper.write(fooObject, new StringWriter());
    }
 
    @Root

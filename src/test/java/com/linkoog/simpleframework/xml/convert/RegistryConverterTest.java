@@ -6,7 +6,7 @@ import com.linkoog.simpleframework.xml.annotations.Default;
 import com.linkoog.simpleframework.xml.DefaultType;
 import com.linkoog.simpleframework.xml.annotations.Element;
 import com.linkoog.simpleframework.xml.annotations.Root;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 import com.linkoog.simpleframework.xml.core.Persister;
 import com.linkoog.simpleframework.xml.stream.CamelCaseStyle;
@@ -18,29 +18,29 @@ import com.linkoog.simpleframework.xml.stream.Style;
 public class RegistryConverterTest extends ValidationTestCase {
 
    public static class EnvelopeConverter implements Converter<Envelope> {
-      private final Serializer serializer;
-      public EnvelopeConverter(Serializer serializer) {
-         this.serializer = serializer;
+      private final XmlMapper xmlMapper;
+      public EnvelopeConverter(XmlMapper xmlMapper) {
+         this.xmlMapper = xmlMapper;
       }
       public Envelope read(InputNode node) throws Exception {
-         return serializer.read(Envelope.class, node);
+         return xmlMapper.read(Envelope.class, node);
       }
       public void write(OutputNode node, Envelope value) throws Exception {
-         serializer.write(value.getValue(), node);
+         xmlMapper.write(value.getValue(), node);
       }
    }
    
    public static class PersonConverter implements Converter<Person> {
-      private final Serializer serializer;
-      public PersonConverter(Serializer serializer) {
-         this.serializer = serializer;
+      private final XmlMapper xmlMapper;
+      public PersonConverter(XmlMapper xmlMapper) {
+         this.xmlMapper = xmlMapper;
       }
       public Person read(InputNode node) throws Exception {
-         return serializer.read(PersonDelegate.class, node.getNext());
+         return xmlMapper.read(PersonDelegate.class, node.getNext());
       }
       public void write(OutputNode node, Person value) throws Exception {
          Person person = new PersonDelegate(value);
-         serializer.write(person, node);
+         xmlMapper.write(person, node);
       }
       @Root
       @Default(DefaultType.PROPERTY)
@@ -134,13 +134,13 @@ public class RegistryConverterTest extends ValidationTestCase {
       Customer customer = new Customer("Niall", "Some Place");
       Envelope envelope = new Envelope(customer);
       RegistryStrategy strategy = new RegistryStrategy(registry);
-      Serializer serializer = new Persister(strategy, format);
-      Converter converter = new EnvelopeConverter(serializer);
+      XmlMapper xmlMapper = new Persister(strategy, format);
+      Converter converter = new EnvelopeConverter(xmlMapper);
       
       registry.bind(Envelope.class, converter);
       
       OrderItem order = new OrderItem(envelope);
-      serializer.write(order, System.out);
+      xmlMapper.write(order, System.out);
    }
    
    public void testPersonConverter() throws Exception {
@@ -149,18 +149,18 @@ public class RegistryConverterTest extends ValidationTestCase {
       Registry registry = new Registry();
       Person person = new Person("Niall", 30);
       RegistryStrategy strategy = new RegistryStrategy(registry);
-      Serializer serializer = new Persister(strategy, format);
-      Converter converter = new PersonConverter(serializer);
+      XmlMapper xmlMapper = new Persister(strategy, format);
+      Converter converter = new PersonConverter(xmlMapper);
       StringWriter writer = new StringWriter();
       
       registry.bind(Person.class, converter);
       
       PersonProfile profile = new PersonProfile(person);
-      serializer.write(profile, writer);
+      xmlMapper.write(profile, writer);
       
       System.out.println(writer.toString());
       
-      PersonProfile read = serializer.read(PersonProfile.class, writer.toString());
+      PersonProfile read = xmlMapper.read(PersonProfile.class, writer.toString());
       
       assertEquals(read.person.name, "Niall");
       assertEquals(read.person.age, 30);

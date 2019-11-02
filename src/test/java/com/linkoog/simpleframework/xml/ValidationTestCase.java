@@ -61,10 +61,10 @@ public class ValidationTestCase extends TestCase {
       assertTrue(FileSystem.validFileSystem());           
    }
 
-   public static synchronized void validate(Serializer out, Object type) throws Exception {
+   public static synchronized void validate(XmlMapper out, Object type) throws Exception {
       validate(type, out);
    }
-    public static synchronized void validate(Object type, Serializer out) throws Exception {
+    public static synchronized void validate(Object type, XmlMapper out) throws Exception {
         String fileName = type.getClass().getSimpleName() + ".xml";
         StringWriter buffer = new StringWriter();
         out.write(type, buffer);

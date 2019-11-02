@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.linkoog.simpleframework.xml.annotations.Attribute;
 import com.linkoog.simpleframework.xml.annotations.ElementList;
-import com.linkoog.simpleframework.xml.Serializer;
+import com.linkoog.simpleframework.xml.XmlMapper;
 import com.linkoog.simpleframework.xml.ValidationTestCase;
 
 /**
@@ -83,9 +83,9 @@ public class MetadataSerializationTest extends ValidationTestCase {
                 new HashSet<B>(Arrays.asList(new B("bbb"))),
                 new HashSet<C>(Arrays.asList(new C("ccc"))));
 
-        Serializer serializer = new Persister();
+        XmlMapper xmlMapper = new Persister();
         StringWriter writer = new StringWriter();
-        serializer.write(a, writer);
+        xmlMapper.write(a, writer);
 
         System.out.println(writer.getBuffer().toString());
     }
